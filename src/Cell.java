@@ -20,10 +20,10 @@ public class Cell {
         this.positionX = positionX;
         this.positionY = positionY;
         this.currentStatus = status;
+        this.neighbors = new ArrayList<Cell>();
     }
 
     public void addNeighbor(Cell neighbor) {
-        System.out.println(neighbor);
         this.neighbors.add(neighbor);
     }
 
