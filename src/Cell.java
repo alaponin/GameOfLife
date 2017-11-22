@@ -23,6 +23,7 @@ public class Cell {
     }
 
     public void addNeighbor(Cell neighbor) {
+        System.out.println(neighbor);
         this.neighbors.add(neighbor);
     }
 

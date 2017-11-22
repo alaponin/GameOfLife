@@ -9,7 +9,13 @@ public class Grid {
     private List<Cell>[][] cells = new ArrayList[dimension][dimension];
 
     public Grid() {
-
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                Cell cell = new Cell(i,j);
+                cells[i][j] = new ArrayList<Cell>();
+                cells[i][j].add(cell);
+            }
+        }
     }
 
     public void setInitialPattern(List<Cell> initialPattern) {
@@ -20,10 +26,39 @@ public class Grid {
             cells[cell.getPositionX()][cell.getPositionY()] = new ArrayList<Cell>();
             cells[cell.getPositionX()][cell.getPositionY()].add(cell);
         }
-
+        addTheNeighbors();
     }
-
-
+    private void addTheNeighbors() {
+        int dimension = this.dimension;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                if (i < dimension && j < dimension && i >= 1 && j >= 1) {
+                    cells[i][j].get(0).addNeighbor(cells[i - 1][j - 1].get(0));
+                }
+                if (i < dimension && j < dimension - 1 && i >= 1 && j >= 0) {
+                    cells[i][j].get(0).addNeighbor(cells[i - 1][j + 1].get(0));
+                }
+                if (i < dimension - 1 && j < dimension && i >= 0 && j >= 1) {
+                    cells[i][j].get(0).addNeighbor(cells[i + 1][j - 1].get(0));
+                }
+                if (i < dimension - 1 && j < dimension - 1 && i >= 0 && j >= 0) {
+                    cells[i][j].get(0).addNeighbor(cells[i + 1][j + 1].get(0));
+                }
+                if (i < dimension && j < dimension && i >= 1 && j >= 0) {
+                    cells[i][j].get(0).addNeighbor(cells[i - 1][j].get(0));
+                }
+                if (i < dimension && j < dimension && i >= 0 && j >= 1) {
+                    cells[i][j].get(0).addNeighbor(cells[i][j - 1].get(0));
+                }
+                if (i < dimension && j < dimension - 1 && i >= 0 && j >= 0) {
+                    cells[i][j].get(0).addNeighbor(cells[i][j + 1].get(0));
+                }
+                if (i < dimension - 1 && j < dimension && i >= 0 && j >= 0) {
+                    cells[i][j].get(0).addNeighbor(cells[i + 1][j].get(0));
+                }
+            }
+        }
+    }
     public void evolve() {
         for (List<Cell>[] cell : cells) {
             for (List<Cell> aCell : cell) {
