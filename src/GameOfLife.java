@@ -7,6 +7,8 @@ public class GameOfLife {
     }
 
     public void tick() {
+        grid.evolve();
 
+        System.out.println(grid.print());
     }
 }

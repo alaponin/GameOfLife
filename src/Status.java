@@ -1,4 +1,4 @@
 public enum Status {
 
-    DEAD, ALIVE;
+    D, A;
 }

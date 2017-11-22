@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
@@ -11,7 +10,7 @@ public class Cell {
     public Cell(int positionX, int positionY) {
         this.positionX = positionX;
         this.positionY = positionY;
-        this.currentStatus = Status.DEAD;
+        this.currentStatus = Status.D;
     }
 
     public void addNeighbor(Cell neighbor) {
@@ -19,21 +18,27 @@ public class Cell {
     }
 
     public void evaluate() {
-
+        if (this.currentStatus.equals(Status.A) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
+            this.die();
+        } else if (this.currentStatus.equals(Status.D) && this.getNumberOfAliveNeighbors() == 3) {
+            this.comeToLife();
+        } else {
+            this.futureStatus = this.currentStatus;
+        }
     }
 
     private void comeToLife() {
-
+        this.futureStatus = Status.A;
     }
 
     private void die() {
-
+        this.futureStatus = Status.D;
     }
 
     private int getNumberOfAliveNeighbors() {
         int aliveNeighbors = 0;
         for (Cell neighbor : neighbors) {
-            if (neighbor.currentStatus.equals(Status.ALIVE)) {
+            if (neighbor.currentStatus.equals(Status.A)) {
                 aliveNeighbors++;
             }
         }
@@ -41,7 +46,11 @@ public class Cell {
     }
 
     public void update() {
+        this.currentStatus = this.futureStatus;
+    }
 
+    public Status getCurrentStatus() {
+        return currentStatus;
     }
 
     @Override
@@ -51,5 +60,10 @@ public class Cell {
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +
                 '}';
+    }
+
+    //TODO: hack delete later
+    public void setCurrentStatus(Status currentStatus) {
+        this.currentStatus = currentStatus;
     }
 }
