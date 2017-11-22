@@ -4,7 +4,6 @@ import java.util.List;
 public class Grid {
 
     private static final int MAX_SIZE = 100;
-
     private int dimension = 10;
     private List<Cell>[][] cells = new ArrayList[dimension][dimension];
 
@@ -26,13 +25,18 @@ public class Grid {
             cells[cell.getPositionX()][cell.getPositionY()] = new ArrayList<Cell>();
             cells[cell.getPositionX()][cell.getPositionY()].add(cell);
         }
+
         addTheNeighbors();
     }
+
     private void addTheNeighbors() {
+
         int dimension = this.dimension;
 
         for (int i = 0; i < dimension; i++) {
+
             for (int j = 0; j < dimension; j++) {
+
                 if (i < dimension && j < dimension && i >= 1 && j >= 1) {
                     cells[i][j].get(0).addNeighbor(cells[i - 1][j - 1].get(0));
                 }
@@ -58,9 +62,13 @@ public class Grid {
                     cells[i][j].get(0).addNeighbor(cells[i + 1][j].get(0));
                 }
             }
+
         }
+
     }
+
     public void evolve() {
+
         for (List<Cell>[] cell : cells) {
             for (List<Cell> aCell : cell) {
                 aCell.get(0).evaluate();
@@ -75,13 +83,17 @@ public class Grid {
     }
 
     public String print() {
+
         String result = "";
+
         for (int i = 0; i < cells.length; i++) {
             for (int j = 0; j < cells[i].length; j++) {
                 result += cells[i][j].get(0).getCurrentStatus().toString() + " ";
             }
+
             result += "\n";
         }
+
         return result;
     }
 

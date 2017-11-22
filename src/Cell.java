@@ -28,13 +28,15 @@ public class Cell {
     }
 
     public void evaluate() {
-        if (this.currentStatus.equals(Status.ALIVE) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
+
+        if ( this.currentStatus.equals(Status.ALIVE) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
             this.die();
         } else if (this.currentStatus.equals(Status.DEAD) && this.getNumberOfAliveNeighbors() == 3) {
             this.comeToLife();
         } else {
             this.futureStatus = this.currentStatus;
         }
+
     }
 
     private void comeToLife() {
@@ -46,12 +48,17 @@ public class Cell {
     }
 
     public int getNumberOfAliveNeighbors() {
+
         int aliveNeighbors = 0;
+
         for (Cell neighbor : neighbors) {
+
             if (neighbor.currentStatus.equals(Status.ALIVE)) {
                 aliveNeighbors++;
             }
+
         }
+
         return aliveNeighbors;
     }
 
@@ -65,11 +72,13 @@ public class Cell {
 
     @Override
     public String toString() {
+
         return "Cell{" +
                 "currentStatus=" + currentStatus +
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +
                 '}';
+
     }
 
     //TODO: hack delete later

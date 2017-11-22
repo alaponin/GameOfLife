@@ -3,14 +3,14 @@ public enum Status {
     DEAD {
         @Override
         public String toString() {
-            return "D";
+            return " ";
         }
     }, ALIVE {
         @Override
         public String toString() {
-            return "A";
+            return "*";
         }
-    };
+    }
 
 
 }
