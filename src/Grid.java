@@ -12,7 +12,7 @@ public class Grid {
                 cells[i][j] = new ArrayList<Cell>();
 
                 if ((i == 3 || i == 4) && (j == 4 || j == 5)) {
-                    cell.setCurrentStatus(Status.A);
+                    cell.setCurrentStatus(Status.ALIVE);
                 }
                 cells[i][j].add(cell);
             }

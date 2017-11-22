@@ -10,7 +10,7 @@ public class Cell {
     public Cell(int positionX, int positionY) {
         this.positionX = positionX;
         this.positionY = positionY;
-        this.currentStatus = Status.D;
+        this.currentStatus = Status.DEAD;
     }
 
     public void addNeighbor(Cell neighbor) {
@@ -18,9 +18,9 @@ public class Cell {
     }
 
     public void evaluate() {
-        if (this.currentStatus.equals(Status.A) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
+        if (this.currentStatus.equals(Status.ALIVE) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
             this.die();
-        } else if (this.currentStatus.equals(Status.D) && this.getNumberOfAliveNeighbors() == 3) {
+        } else if (this.currentStatus.equals(Status.DEAD) && this.getNumberOfAliveNeighbors() == 3) {
             this.comeToLife();
         } else {
             this.futureStatus = this.currentStatus;
@@ -28,17 +28,17 @@ public class Cell {
     }
 
     private void comeToLife() {
-        this.futureStatus = Status.A;
+        this.futureStatus = Status.ALIVE;
     }
 
     private void die() {
-        this.futureStatus = Status.D;
+        this.futureStatus = Status.DEAD;
     }
 
     private int getNumberOfAliveNeighbors() {
         int aliveNeighbors = 0;
         for (Cell neighbor : neighbors) {
-            if (neighbor.currentStatus.equals(Status.A)) {
+            if (neighbor.currentStatus.equals(Status.ALIVE)) {
                 aliveNeighbors++;
             }
         }

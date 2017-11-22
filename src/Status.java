@@ -1,4 +1,16 @@
 public enum Status {
 
-    D, A;
+    DEAD {
+        @Override
+        public String toString() {
+            return "D";
+        }
+    }, ALIVE {
+        @Override
+        public String toString() {
+            return "A";
+        }
+    };
+
+
 }
