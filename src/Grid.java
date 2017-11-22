@@ -5,22 +5,24 @@ public class Grid {
 
     private static final int MAX_SIZE = 100;
 
-    private int dimension;
-    private List<Cell>[][] cells = new ArrayList[10][10];
+    private int dimension = 10;
+    private List<Cell>[][] cells = new ArrayList[dimension][dimension];
 
     public Grid() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                Cell cell = new Cell(i,j);
-                cells[i][j] = new ArrayList<Cell>();
 
-                if ((i == 3 || i == 4) && (j == 4 || j == 5)) {
-                    cell.setCurrentStatus(Status.ALIVE);
-                }
-                cells[i][j].add(cell);
-            }
-        }
     }
+
+    public void setInitialPattern(List<Cell> initialPattern) {
+
+        for(int i = 0; i < initialPattern.size(); i++)
+        {
+            Cell cell = initialPattern.get(i);
+            cells[cell.getPositionX()][cell.getPositionY()] = new ArrayList<Cell>();
+            cells[cell.getPositionX()][cell.getPositionY()].add(cell);
+        }
+
+    }
+
 
     public void evolve() {
         for (List<Cell>[] cell : cells) {
@@ -38,8 +40,8 @@ public class Grid {
 
     public String print() {
         String result = "";
-        for(int i = 0; i < cells.length; i++){
-            for(int j = 0; j < cells[i].length; j++){
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells[i].length; j++) {
                 result += cells[i][j].get(0).getCurrentStatus().toString() + " ";
             }
             result += "\n";

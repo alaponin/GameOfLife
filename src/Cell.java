@@ -3,6 +3,7 @@ import java.util.List;
 public class Cell {
     private Status currentStatus;
     private Status futureStatus;
+
     private int positionX;
     private int positionY;
     private List<Cell> neighbors;
@@ -11,6 +12,12 @@ public class Cell {
         this.positionX = positionX;
         this.positionY = positionY;
         this.currentStatus = Status.DEAD;
+    }
+
+    public Cell(int positionX, int positionY, Status status) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.currentStatus = status;
     }
 
     public void addNeighbor(Cell neighbor) {
@@ -65,5 +72,21 @@ public class Cell {
     //TODO: hack delete later
     public void setCurrentStatus(Status currentStatus) {
         this.currentStatus = currentStatus;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
     }
 }
