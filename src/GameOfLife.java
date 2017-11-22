@@ -7,8 +7,13 @@ public class GameOfLife {
     }
 
     public void tick() {
-        grid.evolve();
+        //grid.evolve();
 
         System.out.println(grid.print());
+    }
+
+    public void randomInit(int numberOfCells)
+    {
+        // TODO: define
     }
 }

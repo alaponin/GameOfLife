@@ -3,6 +3,9 @@ import java.util.List;
 
 public class Grid {
 
+    private static final int MAX_SIZE = 100;
+
+    private int dimension;
     private List<Cell>[][] cells = new ArrayList[10][10];
 
     public Grid() {
@@ -42,5 +45,13 @@ public class Grid {
             result += "\n";
         }
         return result;
+    }
+
+    public int getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(int dimension) {
+        this.dimension = dimension;
     }
 }
