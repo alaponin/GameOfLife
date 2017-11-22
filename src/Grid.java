@@ -30,7 +30,7 @@ public class Grid {
     }
     private void addTheNeighbors() {
         int dimension = this.dimension;
-        
+
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 if (i < dimension && j < dimension && i >= 1 && j >= 1) {
