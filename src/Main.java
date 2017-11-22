@@ -16,9 +16,8 @@ public class Main {
         List<Cell> initialPattern = new ArrayList<Cell>();
 
         for (int i = 0; i < cells; i++) {
-            System.out.println("Enter position x of cell " + i);
+            System.out.println("Enter position x and y of cell " + i);
             int x = reader.nextInt();
-            System.out.println("Enter position y of cell " + i);
             int y = reader.nextInt();
 
             Cell cell = new Cell(x, y, Status.ALIVE);
