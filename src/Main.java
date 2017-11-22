@@ -29,6 +29,11 @@ public class Main {
 
         gol.randomInit(initialPattern);
 
-        gol.tick();
+        gol.print();
+
+        for (int i = 0; i < 5; i++) {
+            gol.tick();
+            gol.print();
+        }
     }
 }

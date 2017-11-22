@@ -10,9 +10,7 @@ public class GameOfLife {
 
 
     public void tick() {
-        //grid.evolve();
-
-        System.out.println(grid.print());
+        grid.evolve();
     }
 
     public void randomInit(List<Cell> initialPattern) {
@@ -22,5 +20,9 @@ public class GameOfLife {
 
     public Grid getGrid() {
         return this.grid;
+    }
+
+    public void print() {
+        System.out.println(grid.print());
     }
 }
