@@ -17,6 +17,40 @@ public class Grid {
                 cells[i][j].add(cell);
             }
         }
+        //TODO: change if it has other dimensions
+        int rows = 10;
+        int cols =10;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (i < rows && j < cols && i >= 1 && j >= 1 ) {
+                    cells[i][j].get(0).addNeighbor(cells[i-1][j-1].get(0));
+                }
+                if (i < rows && j < cols-1 && i >= 1 && j >= 0 ) {
+                    cells[i][j].get(0).addNeighbor(cells[i-1][ j+1].get(0));
+                }
+                if (i < rows-1 && j < cols && i >= 0 && j >= 1 ) {
+                    cells[i][j].get(0).addNeighbor(cells[i+1][j-1].get(0));
+                }
+                if (i < rows-1 && j < cols-1 && i >= 0 && j >= 0) {
+                    cells[i][j].get(0).addNeighbor(cells[i+1][ j+1].get(0));
+                }
+
+                if (i < rows && j < cols && i >= 1 && j >= 0 ) {
+                    cells[i][j].get(0).addNeighbor(cells[i-1] [j].get(0));
+                }
+
+                if (i < rows && j < cols && i >= 0 && j >= 1) {
+                    cells[i][j].get(0).addNeighbor(cells[i] [j-1].get(0));
+                }
+                if (i < rows && j < cols-1 && i >= 0 && j >= 0 ) {
+                    cells[i][j].get(0).addNeighbor(cells[i][ j+1].get(0));
+                }
+
+                if (i < rows-1 && j < cols && i >= 0 && j >= 0 ) {
+                    cells[i][j].get(0).addNeighbor(cells[i+1] [j].get(0));
+                }
+            }
+        }
     }
 
     public void evolve() {

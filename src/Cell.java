@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
@@ -11,6 +12,7 @@ public class Cell {
         this.positionX = positionX;
         this.positionY = positionY;
         this.currentStatus = Status.DEAD;
+        this.neighbors = new ArrayList<Cell>();
     }
 
     public void addNeighbor(Cell neighbor) {
@@ -35,7 +37,7 @@ public class Cell {
         this.futureStatus = Status.DEAD;
     }
 
-    private int getNumberOfAliveNeighbors() {
+    public int getNumberOfAliveNeighbors() {
         int aliveNeighbors = 0;
         for (Cell neighbor : neighbors) {
             if (neighbor.currentStatus.equals(Status.ALIVE)) {
