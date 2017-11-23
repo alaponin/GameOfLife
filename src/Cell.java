@@ -10,10 +10,7 @@ public class Cell {
     private List<Cell> neighbors;
 
     public Cell(int positionX, int positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.currentStatus = Status.DEAD;
-        this.neighbors = new ArrayList<Cell>();
+        this(positionX, positionY, Status.DEAD);
     }
 
     public Cell(int positionX, int positionY, Status status) {
@@ -27,9 +24,14 @@ public class Cell {
         this.neighbors.add(neighbor);
     }
 
+    /**
+     * When the cell is alive and has more than 3 or less than 2 alive neighbors, it will die.
+     * When the cell is dead and has 3 alive neighbors, it will come back to life.
+     * In any other case it will keep the current status.
+     */
     public void evaluate() {
-
-        if ( this.currentStatus.equals(Status.ALIVE) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
+        
+        if (this.currentStatus.equals(Status.ALIVE) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
             this.die();
         } else if (this.currentStatus.equals(Status.DEAD) && this.getNumberOfAliveNeighbors() == 3) {
             this.comeToLife();
@@ -70,30 +72,11 @@ public class Cell {
         return currentStatus;
     }
 
-    @Override
-    public String toString() {
-
-        return "Cell{" +
-                "currentStatus=" + currentStatus +
-                ", positionX=" + positionX +
-                ", positionY=" + positionY +
-                '}';
-
-    }
-
     public int getPositionX() {
         return positionX;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
     public int getPositionY() {
         return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
     }
 }
