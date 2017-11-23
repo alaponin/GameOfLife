@@ -43,25 +43,25 @@ public class Grid {
                 if (i < dimension && j < dimension && i >= 1 && j >= 1) {
                     cells[i][j].get(0).addNeighbor(cells[i - 1][j - 1].get(0));
                 }
-                if (i < dimension && j < dimension - 1 && i >= 1 && j >= 0) {
+                if (i < dimension && j < dimension - 1 && i >= 1) {
                     cells[i][j].get(0).addNeighbor(cells[i - 1][j + 1].get(0));
                 }
-                if (i < dimension - 1 && j < dimension && i >= 0 && j >= 1) {
+                if (i < dimension - 1 && j < dimension && j >= 1) {
                     cells[i][j].get(0).addNeighbor(cells[i + 1][j - 1].get(0));
                 }
-                if (i < dimension - 1 && j < dimension - 1 && i >= 0 && j >= 0) {
+                if (i < dimension - 1 && j < dimension - 1) {
                     cells[i][j].get(0).addNeighbor(cells[i + 1][j + 1].get(0));
                 }
-                if (i < dimension && j < dimension && i >= 1 && j >= 0) {
+                if (i < dimension && j < dimension && i >= 1) {
                     cells[i][j].get(0).addNeighbor(cells[i - 1][j].get(0));
                 }
-                if (i < dimension && j < dimension && i >= 0 && j >= 1) {
+                if (i < dimension && j < dimension && j >= 1) {
                     cells[i][j].get(0).addNeighbor(cells[i][j - 1].get(0));
                 }
-                if (i < dimension && j < dimension - 1 && i >= 0 && j >= 0) {
+                if (i < dimension && j < dimension - 1 ) {
                     cells[i][j].get(0).addNeighbor(cells[i][j + 1].get(0));
                 }
-                if (i < dimension - 1 && j < dimension && i >= 0 && j >= 0) {
+                if (i < dimension - 1 && j < dimension) {
                     cells[i][j].get(0).addNeighbor(cells[i + 1][j].get(0));
                 }
             }
@@ -72,15 +72,15 @@ public class Grid {
 
     public void evolve() {
 
-        for (List<Cell>[] cell : cells) {
-            for (List<Cell> aCell : cell) {
-                aCell.get(0).evaluate();
+        for (List<Cell>[] cellList : cells) {
+            for (List<Cell> cell : cellList) {
+                cell.get(0).evaluate();
             }
         }
 
-        for (List<Cell>[] cell : cells) {
-            for (List<Cell> aCell : cell) {
-                aCell.get(0).update();
+        for (List<Cell>[] cellList : cells) {
+            for (List<Cell> cell : cellList) {
+                cell.get(0).update();
             }
         }
     }
