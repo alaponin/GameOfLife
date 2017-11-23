@@ -4,10 +4,14 @@ import java.util.List;
 public class Grid {
 
     private static final int MAX_SIZE = 100;
-    private int dimension = 10;
-    private List<Cell>[][] cells = new ArrayList[dimension][dimension];
+    private int dimension;
+    private List<Cell>[][] cells;
+    //private List<List<Cell>> cells = new ArrayList<List<Cell>>();
 
-    public Grid() {
+    public Grid(int gridDimension) {
+        this.dimension = gridDimension;
+        cells = new ArrayList[dimension][dimension];
+
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
                 Cell cell = new Cell(i,j);
