@@ -1,3 +1,5 @@
+package logic;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -13,16 +15,20 @@ public class GameOfLife {
     static JTextArea tArea;
 
     public GameOfLife(int gridDimension) {
-        this.grid = new Grid(gridDimension);
+
+        this.gridDimension = gridDimension;
+
+        this.grid = new Grid(this.gridDimension);
+
     }
 
     public void tick() {
         grid.evolve();
     }
 
-    public void randomInit(List<Cell> initialPattern, int dimension) {
+    public void randomInit(List<Cell> initialPattern) {
 
-        tArea = new JTextArea(dimension, dimension);
+        tArea = new JTextArea(this.gridDimension, this.gridDimension);
 
         tArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 30));
 
@@ -56,8 +62,5 @@ public class GameOfLife {
             Thread.currentThread().interrupt();
         }
 
-        // TODO: uncomment if you want to see console output.
-
-        //System.out.println(grid.print());
     }
 }

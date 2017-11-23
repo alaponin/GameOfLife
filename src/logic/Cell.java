@@ -1,3 +1,5 @@
+package logic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +75,7 @@ public class Cell {
     @Override
     public String toString() {
 
-        return "Cell{" +
+        return "logic.Cell{" +
                 "currentStatus=" + currentStatus +
                 ", positionX=" + positionX +
                 ", positionY=" + positionY +

@@ -1,3 +1,5 @@
+package logic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +8,7 @@ public class Grid {
     private static final int MAX_SIZE = 100;
     private int dimension;
     private List<Cell>[][] cells;
-    //private List<List<Cell>> cells = new ArrayList<List<Cell>>();
+    //private List<List<logic.Cell>> cells = new ArrayList<List<logic.Cell>>();
 
     public Grid(int gridDimension) {
         this.dimension = gridDimension;

@@ -1,45 +1,26 @@
-import java.util.ArrayList;
+import logic.Cell;
+import logic.GameOfLife;
+import tests.*;
+
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        TestFactory testFactory = new TestFactory();
 
-        System.out.println("Enter a dimension for the grid: ");
+        Test testScenario = testFactory.getTestScenario("toad");
 
-        int dim = reader.nextInt();
+        List<Cell> initialPattern = testScenario.obtainScenario();
 
-        GameOfLife gol = new GameOfLife(dim);
-        
-        System.out.println("Enter initial number of alive cells: ");
+        GameOfLife gol = new GameOfLife(testScenario.getGridDimension());
 
-        int cells = reader.nextInt();
-
-        List<Cell> initialPattern = new ArrayList<Cell>();
-
-        for (int i = 0; i < cells; i++) {
-
-            System.out.println("Enter position x and y of cell " + i);
-
-            int x = reader.nextInt();
-
-            int y = reader.nextInt();
-
-            Cell cell = new Cell(x, y, Status.ALIVE);
-
-            initialPattern.add(cell);
-        }
-
-        reader.close();
-
-        gol.randomInit(initialPattern, dim);
+        gol.randomInit(initialPattern);
 
         gol.print();
 
-        for ( ; ; ) {   // infinite tick
+        for ( ; ; ) {
 
             gol.tick();
 
