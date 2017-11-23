@@ -37,7 +37,7 @@ public class Main {
 
         reader.close();
 
-        gol.randomInit(initialPattern);
+        gol.randomInit(initialPattern, dim);
 
         gol.print();
 

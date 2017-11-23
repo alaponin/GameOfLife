@@ -7,31 +7,30 @@ public class GameOfLife {
     private Grid grid;
 
     static JFrame frame         = new JFrame("Game of Life");
-    static JTextArea tArea      = new JTextArea(10,20);
-    static JScrollPane pane     = new JScrollPane(tArea);
-    static Container container;
+
+    static JTextArea tArea;
 
     public GameOfLife() {
-
         this.grid = new Grid();
-
-        // TODO: make this less hardcoded and beautiful
-
-        container = frame.getContentPane();
-        container.add(pane);
-
-        frame.setSize(300,200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setUndecorated(true);
-        frame.setVisible(true);
     }
-
 
     public void tick() {
         grid.evolve();
     }
 
-    public void randomInit(List<Cell> initialPattern) {
+    public void randomInit(List<Cell> initialPattern, int dimension) {
+
+        tArea = new JTextArea(dimension, dimension);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.getContentPane().add(tArea, BorderLayout.CENTER);
+
+        frame.setSize(500,300);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setVisible(true);
 
         this.grid.setInitialPattern(initialPattern);
     }
