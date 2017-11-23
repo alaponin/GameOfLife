@@ -6,16 +6,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GameOfLife gol = new GameOfLife();
-
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
         System.out.println("Enter a dimension for the grid: ");
 
         int dim = reader.nextInt();
 
-        gol.getGrid().setDimension(dim);
-
+        GameOfLife gol = new GameOfLife(dim);
+        
         System.out.println("Enter initial number of alive cells: ");
 
         int cells = reader.nextInt();

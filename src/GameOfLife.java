@@ -6,12 +6,14 @@ public class GameOfLife {
 
     private Grid grid;
 
+    private int gridDimension;
+
     static JFrame frame         = new JFrame("Game of Life");
 
     static JTextArea tArea;
 
-    public GameOfLife() {
-        this.grid = new Grid();
+    public GameOfLife(int gridDimension) {
+        this.grid = new Grid(gridDimension);
     }
 
     public void tick() {
