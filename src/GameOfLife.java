@@ -22,6 +22,8 @@ public class GameOfLife {
 
         tArea = new JTextArea(dimension, dimension);
 
+        tArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 30));
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.getContentPane().add(tArea, BorderLayout.CENTER);

@@ -41,7 +41,7 @@ public class Main {
 
         gol.print();
 
-        for (int i = 0; i < 100; i++) {
+        for ( ; ; ) {   // infinite tick
 
             gol.tick();
 
