@@ -1,14 +1,15 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.List;
 import logic.Cell;
 
-public class Grid {
+class Grid {
 
     private int dimension;
     private List<Cell>[][] cells;
 
-    public Grid(int gridDimension) {
+    Grid(int gridDimension) {
         this.dimension = gridDimension;
         cells = new ArrayList[dimension][dimension];
 
@@ -21,11 +22,9 @@ public class Grid {
         }
     }
 
-    public void setInitialPattern(List<Cell> initialPattern) {
+    void setInitialPattern(List<Cell> initialPattern) {
 
-        for(int i = 0; i < initialPattern.size(); i++)
-        {
-            Cell cell = initialPattern.get(i);
+        for (Cell cell : initialPattern) {
             cells[cell.getPositionX()][cell.getPositionY()] = new ArrayList<Cell>();
             cells[cell.getPositionX()][cell.getPositionY()].add(cell);
         }
@@ -71,7 +70,7 @@ public class Grid {
 
     }
 
-    public void evolve() {
+    void evolve() {
 
         for (List<Cell>[] cellList : cells) {
             for (List<Cell> cell : cellList) {
@@ -86,13 +85,13 @@ public class Grid {
         }
     }
 
-    public String print() {
+    String print() {
 
         String result = "";
 
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                result += cells[i][j].get(0).getCurrentStatus().toString() + " ";
+        for (List<Cell>[] cell : cells) {
+            for (int j = 0; j < cell.length; j++) {
+                result += cell[j].get(0).getCurrentStatus().toString() + " ";
             }
 
             result += "\n";

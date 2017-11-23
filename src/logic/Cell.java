@@ -1,3 +1,5 @@
+package logic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class Cell {
         this.neighbors = new ArrayList<Cell>();
     }
 
-    public void addNeighbor(Cell neighbor) {
+    void addNeighbor(Cell neighbor) {
         this.neighbors.add(neighbor);
     }
 
@@ -29,7 +31,7 @@ public class Cell {
      * When the cell is dead and has 3 alive neighbors, it will come back to life.
      * In any other case it will keep the current status.
      */
-    public void evaluate() {
+    void evaluate() {
 
         if ( this.currentStatus.equals(Status.ALIVE) && (this.getNumberOfAliveNeighbors() > 3 || this.getNumberOfAliveNeighbors() < 2)) {
             this.die();
@@ -41,15 +43,15 @@ public class Cell {
 
     }
 
-    private void comeToLife() {
+    void comeToLife() {
         this.futureStatus = Status.ALIVE;
     }
 
-    private void die() {
+    void die() {
         this.futureStatus = Status.DEAD;
     }
 
-    public int getNumberOfAliveNeighbors() {
+    int getNumberOfAliveNeighbors() {
 
         int aliveNeighbors = 0;
 
@@ -64,19 +66,19 @@ public class Cell {
         return aliveNeighbors;
     }
 
-    public void update() {
+    void update() {
         this.currentStatus = this.futureStatus;
     }
 
-    public Status getCurrentStatus() {
+    Status getCurrentStatus() {
         return currentStatus;
     }
 
-    public int getPositionX() {
+    int getPositionX() {
         return positionX;
     }
 
-    public int getPositionY() {
+    int getPositionY() {
         return positionY;
     }
 }

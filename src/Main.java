@@ -1,6 +1,7 @@
 import logic.Cell;
 import logic.GameOfLife;
 import tests.*;
+import java.util.List;
 
 public class Main {
 
@@ -8,7 +9,7 @@ public class Main {
 
         TestFactory testFactory = new TestFactory();
 
-        Test testScenario = testFactory.getTestScenario("toad");
+        Test testScenario = testFactory.getTestScenario("pulsar");
 
         List<Cell> initialPattern = testScenario.obtainScenario();
 
