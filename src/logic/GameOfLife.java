@@ -36,7 +36,7 @@ public class GameOfLife {
 
         frame.getContentPane().add(tArea, BorderLayout.CENTER);
 
-        frame.setSize(500,300);
+        frame.setSize(700,800);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
