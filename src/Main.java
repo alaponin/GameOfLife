@@ -13,7 +13,7 @@ public class Main {
         int dim = reader.nextInt();
 
         GameOfLife gol = new GameOfLife(dim);
-        
+
         System.out.println("Enter initial number of alive cells: ");
 
         int cells = reader.nextInt();

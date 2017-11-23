@@ -81,11 +81,6 @@ public class Cell {
 
     }
 
-    //TODO: hack delete later
-    public void setCurrentStatus(Status currentStatus) {
-        this.currentStatus = currentStatus;
-    }
-
     public int getPositionX() {
         return positionX;
     }
