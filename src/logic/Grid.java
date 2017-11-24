@@ -2,11 +2,11 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.List;
-import logic.Cell;
 
 class Grid {
 
     private int dimension;
+
     private List<Cell>[][] cells;
 
     Grid(int gridDimension) {
@@ -87,16 +87,20 @@ class Grid {
 
     String print() {
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (List<Cell>[] cell : cells) {
-            for (int j = 0; j < cell.length; j++) {
-                result += cell[j].get(0).getCurrentStatus().toString() + " ";
+            for (List<Cell> aCell : cell) {
+                result.append(aCell.get(0).getCurrentStatus().toString()).append(" ");
             }
 
-            result += "\n";
+            result.append("\n");
         }
 
-        return result;
+        return result.toString();
+    }
+
+    public int getDimension() {
+        return dimension;
     }
 }

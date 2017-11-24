@@ -4,21 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class GameOfLife {
 
     private Grid grid;
 
-    private int gridDimension;
+    private static JFrame frame         = new JFrame("Game of Life");
 
-    static JFrame frame         = new JFrame("Game of Life");
-
-    static JTextArea tArea;
+    private static JTextArea tArea;
 
     public GameOfLife(int gridDimension) {
 
-        this.gridDimension = gridDimension;
-
-        this.grid = new Grid(this.gridDimension);
+        this.grid = new Grid(gridDimension);
 
     }
 
@@ -28,7 +25,7 @@ public class GameOfLife {
 
     public void randomInit(List<Cell> initialPattern) {
 
-        tArea = new JTextArea(this.gridDimension, this.gridDimension);
+        tArea = new JTextArea(this.grid.getDimension(), this.grid.getDimension());
 
         tArea.setFont(new Font(Font.MONOSPACED, Font.BOLD, 30));
 
@@ -43,10 +40,6 @@ public class GameOfLife {
         frame.setVisible(true);
 
         this.grid.setInitialPattern(initialPattern);
-    }
-
-    public Grid getGrid() {
-        return this.grid;
     }
 
     public void print() {

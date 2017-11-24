@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
+
     private Status currentStatus;
     private Status futureStatus;
-
     private int positionX;
     private int positionY;
+
     private List<Cell> neighbors;
 
     public Cell(int positionX, int positionY) {
@@ -43,15 +44,15 @@ public class Cell {
 
     }
 
-    void comeToLife() {
+    private void comeToLife() {
         this.futureStatus = Status.ALIVE;
     }
 
-    void die() {
+    private void die() {
         this.futureStatus = Status.DEAD;
     }
 
-    int getNumberOfAliveNeighbors() {
+    private int getNumberOfAliveNeighbors() {
 
         int aliveNeighbors = 0;
 

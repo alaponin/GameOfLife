@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Blinker implements Test {
 
-    private int numberAliveCells                = 3;
+    private final int numberAliveCells                = 3;
 
-    private int gridDimension                   = 5;
+    private final int gridDimension                   = 5;
 
     private static final int[][] coordinates    = { {2,1}, {2,2}, {2,3} };
 
