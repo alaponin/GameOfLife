@@ -1,4 +1,5 @@
 import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.prism.image.Coords;
 
 import javax.swing.*;
 import java.awt.*;
@@ -115,27 +116,22 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
 
     @Override
     public void componentMoved(ComponentEvent e) {
-
     }
 
     @Override
     public void componentShown(ComponentEvent e) {
-
     }
 
     @Override
     public void componentHidden(ComponentEvent e) {
-
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
@@ -146,12 +142,10 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 
     @Override
@@ -162,7 +156,6 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
     }
 
     @Override
@@ -210,13 +203,13 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
             game = new Thread(this);
             game.start();
         }
-        if(!isBeingPlayed){
+        if (!isBeingPlayed) {
             game.interrupt();
-            try{
-            game.join();
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
+            try {
+                game.join();
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
@@ -242,16 +235,30 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
 
     public void resetBoard() {
         point.clear();
+        repaint();
     }
 
     public void randomlyFillBoard() {
-        int percent =(int) Math.floor(Math.random() * 100) + 1;
+        int percent = (int) Math.floor(Math.random() * 100) + 1;
         for (int i = 0; i < d_gameBoardSize.width; i++) {
             for (int j = 0; j < d_gameBoardSize.height; j++) {
                 if (Math.random() * 100 < percent) {
                     addPoint(i, j);
                 }
             }
+        }
+    }
+
+    public void loadSelectedPatternFillBoard(String selectedPattern) {
+        if (selectedPattern.equalsIgnoreCase("glider")) {
+            List<Point> lst = new ArrayList<Point>();
+            lst.add(new java.awt.Point(10, 10));
+            lst.add(new java.awt.Point(10, 11));
+            lst.add(new java.awt.Point(10, 12));
+            lst.add(new java.awt.Point(11, 10));
+            lst.add(new java.awt.Point(12, 11));
+            for (Point p : lst)
+                addPoint(p.x, p.y);
         }
     }
 
