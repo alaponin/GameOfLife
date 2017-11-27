@@ -1,41 +1,29 @@
 import logic.Cell;
 import logic.GameOfLife;
 import tests.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class Main {
+public class Main {
+    private static final Dimension DEFAULT_WINDOW_SIZE = new Dimension(800, 600);
+    private static final Dimension MINIMUM_WINDOW_SIZE = new Dimension(400, 400);
 
     public static void main(String[] args) {
-
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-
-        System.out.println("Enter the desired test scenario: ");
-        System.out.println("- Blinker");
-        System.out.println("- Toad");
-        System.out.println("- Beacon");
-        System.out.println("- Pulsar");
-        System.out.print("\nOption: ");
-
-        String testCase = reader.nextLine();
-
-        TestFactory testFactory = new TestFactory();
-
-        Test testScenario = testFactory.getTestScenario(testCase);
-
-        List<Cell> initialPattern = testScenario.obtainScenario();
-
-        GameOfLife gol = new GameOfLife(testScenario.getGridDimension());
-
-        gol.randomInit(initialPattern);
-
-        gol.print();
-
-        for ( ; ; ) {
-
-            gol.tick();
-
-            gol.print();
-        }
+        // Setup the swing specifics
+        JFrame game = new GameOfLife();
+        game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        game.setTitle("Conway's Game of Life");
+        game.setSize(DEFAULT_WINDOW_SIZE);
+        game.setMinimumSize(MINIMUM_WINDOW_SIZE);
+        game.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - game.getWidth()) / 2,
+                (Toolkit.getDefaultToolkit().getScreenSize().height - game.getHeight()) / 2);
+        game.setVisible(true);
+        game.setResizable(false);
     }
 }
+
