@@ -10,8 +10,6 @@ public class Blinker implements Test {
 
     private final int numberAliveCells                = 3;
 
-    private final int gridDimension                   = 5;
-
     private static final int[][] coordinates    = { {2,1}, {2,2}, {2,3} };
 
     public List<Cell> obtainScenario(){
@@ -28,7 +26,4 @@ public class Blinker implements Test {
         return blinkerPattern;
     }
 
-    public int getGridDimension() {
-        return gridDimension;
-    }
 }

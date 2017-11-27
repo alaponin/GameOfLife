@@ -5,23 +5,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
-import java.util.List;
-
 
 public class GameOfLife extends JFrame implements ActionListener {
 
     private Grid grid;
-
     private JMenuBar mb_menu;
     private JMenu m_help;
     private JMenuItem mi_help_about, mi_help_source;
+
     JButton startGameBtn = new JButton("Start");
     JButton stopGameBtn = new JButton("Stop");
     JButton resetGameBtn = new JButton("Reset");
     JButton randomFillBtn = new JButton("Random Pattern");
     JButton choosePatternBtn = new JButton("Choose From Patterns");
-    private Thread game;
-
 
     public GameOfLife() {
 
@@ -61,29 +57,6 @@ public class GameOfLife extends JFrame implements ActionListener {
         buttonPanel.add(choosePatternBtn);
     }
 
-    public void tick() {
-        grid.evolve();
-    }
-
-    public void randomInit(List<Cell> initialPattern, int dimension) {
-        this.grid.setInitialPattern(initialPattern);
-    }
-
-    public Grid getGrid() {
-        return this.grid;
-    }
-
-    public void print() {
-        try {
-            Thread.sleep(1000);
-            grid.run();
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        // TODO: uncomment if you want to see console output.
-        //System.out.println(grid.print());
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(startGameBtn)) {
@@ -98,7 +71,7 @@ public class GameOfLife extends JFrame implements ActionListener {
         } else if (e.getSource().equals(choosePatternBtn)) {
             final JFrame f_autoFill = new JFrame();
             f_autoFill.setTitle("Patterns");
-            f_autoFill.setSize(360, 60);
+            f_autoFill.setSize(360, 80);
             f_autoFill.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - f_autoFill.getWidth()) / 2,
                     (Toolkit.getDefaultToolkit().getScreenSize().height - f_autoFill.getHeight()) / 2);
             f_autoFill.setResizable(false);
@@ -106,7 +79,7 @@ public class GameOfLife extends JFrame implements ActionListener {
             p_patterns.setOpaque(false);
             f_autoFill.add(p_patterns);
             p_patterns.add(new JLabel("What pattern do you like to load? "));
-            String[] patternOptions = {"Select", "glider"};
+            String[] patternOptions = {"Select", "Beacon", "Blinker", "Pulsar", "Toad"};
             final JComboBox cb_patterns = new JComboBox(patternOptions);
             p_patterns.add(cb_patterns);
             cb_patterns.addActionListener(new ActionListener() {

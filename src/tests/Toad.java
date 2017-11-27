@@ -10,8 +10,6 @@ public class Toad implements Test {
 
     private final int numberAliveCells                = 6;
 
-    private final int gridDimension                   = 6;
-
     private static final int[][] coordinates    = { {2,2}, {2,3}, {2,4}, {3,1}, {3,2}, {3,3} };
 
     public List<Cell> obtainScenario(){
@@ -28,7 +26,4 @@ public class Toad implements Test {
         return blinkerPattern;
     }
 
-    public int getGridDimension() {
-        return gridDimension;
-    }
 }

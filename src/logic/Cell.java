@@ -75,6 +75,10 @@ public class Cell {
         return currentStatus;
     }
 
+    public void setCurrentStatus(Status currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
     int getPositionX() {
         return positionX;
     }

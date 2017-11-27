@@ -1,7 +1,8 @@
 package logic;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.prism.image.Coords;
+import logic.Cell;
+import tests.Test;
+import tests.TestFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +12,6 @@ import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class Grid extends JPanel implements ComponentListener, MouseListener, MouseMotionListener, Runnable {
-
-    private static final int MAX_SIZE = 100;
 
     private List<Cell>[][] cells;
     private static final int BLOCK_SIZE = 10;//for GUI
@@ -82,25 +81,10 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
         }
     }
 
-    public String print() {
-
-        String result = "";
-
-        for (int i = 0; i < cells.length; i++) {
-            for (int j = 0; j < cells[i].length; j++) {
-                result += cells[i][j].get(0).getCurrentStatus().name().toString() + " ";
-            }
-
-            result += "\n";
-        }
-
-        return result;
-    }
-
 
     @Override
     public void componentResized(ComponentEvent e) {
-        // Setup the game board size with proper boundries
+        // Setup the game board size with proper boundaries
         d_gameBoardSize = new Dimension(getWidth() / BLOCK_SIZE - 2, getHeight() / BLOCK_SIZE - 2);
         updateArraySize();
     }
@@ -163,8 +147,6 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
     @Override
     public void run() {
 
-        boolean[][] gameBoard = new boolean[d_gameBoardSize.width + 2][d_gameBoardSize.height + 2];
-        GameOfLife gol = new GameOfLife();
         List<Cell> initialPattern = new ArrayList<Cell>();
 
         cells = new ArrayList[d_gameBoardSize.width][d_gameBoardSize.height];
@@ -197,6 +179,7 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
             Thread.sleep(800);
             run();
         } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -231,10 +214,6 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
         repaint();
     }
 
-    public void removePoint(int x, int y) {
-        point.remove(new Point(x, y));
-    }
-
     public void resetBoard() {
         point.clear();
         repaint();
@@ -252,15 +231,34 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
     }
 
     public void loadSelectedPatternFillBoard(String selectedPattern) {
-        if (selectedPattern.equalsIgnoreCase("glider")) {
-            List<Point> lst = new ArrayList<Point>();
-            lst.add(new java.awt.Point(10, 10));
-            lst.add(new java.awt.Point(10, 11));
-            lst.add(new java.awt.Point(10, 12));
-            lst.add(new java.awt.Point(11, 10));
-            lst.add(new java.awt.Point(12, 11));
-            for (Point p : lst)
-                addPoint(p.x, p.y);
+
+        if (selectedPattern.equalsIgnoreCase("Blinker")) {
+
+            assignCellsToGrid("blinker");
+        }
+        else if (selectedPattern.equalsIgnoreCase("Beacon")) {
+
+            assignCellsToGrid("beacon");
+        }
+        else if (selectedPattern.equalsIgnoreCase("Toad")) {
+
+            assignCellsToGrid("toad");
+        }
+        else if (selectedPattern.equalsIgnoreCase("Pulsar")) {
+
+            assignCellsToGrid("pulsar");
+        }
+
+    }
+
+    private void assignCellsToGrid(String patternName) {
+        TestFactory testFactory = new TestFactory();
+        Test testScenario = testFactory.getTestScenario(patternName);
+        List<Cell> aliveCells = testScenario.obtainScenario();
+
+        for (Cell cell : aliveCells) {
+            Point point = new Point(cell.getPositionX(), cell.getPositionY());
+            addPoint(point.x, point.y);
         }
     }
 
@@ -274,6 +272,7 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
                 g.fillRect(BLOCK_SIZE + (BLOCK_SIZE * newPoint.x), BLOCK_SIZE + (BLOCK_SIZE * newPoint.y), BLOCK_SIZE, BLOCK_SIZE);
             }
         } catch (ConcurrentModificationException cme) {
+            cme.printStackTrace();
         }
         // Setup grid
         g.setColor(Color.BLACK);

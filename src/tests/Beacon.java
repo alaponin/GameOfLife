@@ -9,8 +9,6 @@ public class Beacon implements Test {
 
     private final int numberAliveCells                = 6;
 
-    private final int gridDimension                   = 6;
-
     private static final int[][] coordinates    = { {1,1}, {1,2}, {2,1}, {3,4}, {4,3}, {4,4} };
 
     public List<Cell> obtainScenario(){
@@ -27,7 +25,4 @@ public class Beacon implements Test {
         return blinkerPattern;
     }
 
-    public int getGridDimension() {
-        return gridDimension;
-    }
 }

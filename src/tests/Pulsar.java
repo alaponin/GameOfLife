@@ -8,8 +8,6 @@ import java.util.List;
 
 public class Pulsar implements Test {
 
-    private final int gridDimension             = 17;
-
     private final int numberAliveCells          = 48;
 
     private static final int[][] coordinates    = { {2,4}, {2,5}, {2,6},  {2,10}, {2,11}, {2,12}, {4,2}, {4,7}, {4,9},
@@ -33,7 +31,4 @@ public class Pulsar implements Test {
         return blinkerPattern;
     }
 
-    public int getGridDimension() {
-        return gridDimension;
-    }
 }
