@@ -179,7 +179,7 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
             Thread.sleep(800);
             run();
         } catch (InterruptedException ex) {
-            ex.printStackTrace();
+            Thread.currentThread().interrupt(); // restore interrupted status
         }
     }
 
@@ -235,16 +235,13 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
         if (selectedPattern.equalsIgnoreCase("Blinker")) {
 
             assignCellsToGrid("blinker");
-        }
-        else if (selectedPattern.equalsIgnoreCase("Beacon")) {
+        } else if (selectedPattern.equalsIgnoreCase("Beacon")) {
 
             assignCellsToGrid("beacon");
-        }
-        else if (selectedPattern.equalsIgnoreCase("Toad")) {
+        } else if (selectedPattern.equalsIgnoreCase("Toad")) {
 
             assignCellsToGrid("toad");
-        }
-        else if (selectedPattern.equalsIgnoreCase("Pulsar")) {
+        } else if (selectedPattern.equalsIgnoreCase("Pulsar")) {
 
             assignCellsToGrid("pulsar");
         }
@@ -264,24 +261,26 @@ public class Grid extends JPanel implements ComponentListener, MouseListener, Mo
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        Graphics localGraphics = g;
+        super.paintComponent(localGraphics);
         try {
             for (Point newPoint : point) {
                 // Draw new point
-                g.setColor(Color.black);
-                g.fillRect(BLOCK_SIZE + (BLOCK_SIZE * newPoint.x), BLOCK_SIZE + (BLOCK_SIZE * newPoint.y), BLOCK_SIZE, BLOCK_SIZE);
+                localGraphics.setColor(Color.black);
+                localGraphics.fillRect(BLOCK_SIZE + (BLOCK_SIZE * newPoint.x), BLOCK_SIZE + (BLOCK_SIZE * newPoint.y), BLOCK_SIZE, BLOCK_SIZE);
             }
         } catch (ConcurrentModificationException cme) {
             cme.printStackTrace();
         }
         // Setup grid
-        g.setColor(Color.BLACK);
+        localGraphics.setColor(Color.BLACK);
         for (int i = 0; i <= d_gameBoardSize.width; i++) {
-            g.drawLine(((i * BLOCK_SIZE) + BLOCK_SIZE), BLOCK_SIZE, (i * BLOCK_SIZE) + BLOCK_SIZE, BLOCK_SIZE + (BLOCK_SIZE * d_gameBoardSize.height));
+            localGraphics.drawLine(((i * BLOCK_SIZE) + BLOCK_SIZE), BLOCK_SIZE, (i * BLOCK_SIZE) + BLOCK_SIZE, BLOCK_SIZE + (BLOCK_SIZE * d_gameBoardSize.height));
         }
         for (int i = 0; i <= d_gameBoardSize.height; i++) {
-            g.drawLine(BLOCK_SIZE, ((i * BLOCK_SIZE) + BLOCK_SIZE), BLOCK_SIZE * (d_gameBoardSize.width + 1), ((i * BLOCK_SIZE) + BLOCK_SIZE));
+            localGraphics.drawLine(BLOCK_SIZE, ((i * BLOCK_SIZE) + BLOCK_SIZE), BLOCK_SIZE * (d_gameBoardSize.width + 1), ((i * BLOCK_SIZE) + BLOCK_SIZE));
         }
+        g = localGraphics;
     }
 
 }

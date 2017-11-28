@@ -13,9 +13,9 @@ public class GameOfLife extends JFrame implements ActionListener {
     private JMenu m_help;
     private JMenuItem mi_help_about, mi_help_source;
 
-    JButton startGameBtn = new JButton("Start");
-    JButton stopGameBtn = new JButton("Stop");
-    JButton resetGameBtn = new JButton("Reset");
+    final JButton startGameBtn = new JButton("Start");
+    final JButton stopGameBtn = new JButton("Stop");
+    final JButton resetGameBtn = new JButton("Reset");
     JButton randomFillBtn = new JButton("Random Pattern");
     JButton choosePatternBtn = new JButton("Choose From Patterns");
 
@@ -46,6 +46,7 @@ public class GameOfLife extends JFrame implements ActionListener {
 
         stopGameBtn.addActionListener(this);
         buttonPanel.add(stopGameBtn);
+        stopGameBtn.setEnabled(false);
 
         resetGameBtn.addActionListener(this);
         buttonPanel.add(resetGameBtn);
@@ -61,10 +62,20 @@ public class GameOfLife extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(startGameBtn)) {
             grid.setGameBeingPlayed(true);
+            startGameBtn.setEnabled(false);
+            resetGameBtn.setEnabled(false);
+            randomFillBtn.setEnabled(false);
+            choosePatternBtn.setEnabled(false);
+            stopGameBtn.setEnabled(true);
         } else if (e.getSource().equals(resetGameBtn)) {
             grid.resetBoard();
         } else if (e.getSource().equals(stopGameBtn)) {
             grid.setGameBeingPlayed(false);
+            startGameBtn.setEnabled(true);
+            resetGameBtn.setEnabled(true);
+            randomFillBtn.setEnabled(true);
+            choosePatternBtn.setEnabled(true);
+            stopGameBtn.setEnabled(false);
         } else if (e.getSource().equals(randomFillBtn)) {
             grid.resetBoard();
             grid.randomlyFillBoard();
